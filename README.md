@@ -14,27 +14,24 @@
 #
 ## 🚀&nbsp; ERD 설계
 
----
-![erd 설계.png](erd%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%80%E1%85%A8.png)
+![erd 설계](https://github.com/user-attachments/assets/685c9d85-9d3b-4d1d-9676-a8d1372c32a7)
+
 
 #
 ## 🚀&nbsp;  아키텍처
 
----
 
 
 #
 
 ## 🚀&nbsp; 시퀀스 다이어그램 예시
 
----
 
 
 
 #
 ## 🚀&nbsp; 기술스택
 
----
 ### <u>*\# Spring Framework*</u> &nbsp;&nbsp;&nbsp; <u>*\# Spring Boot*</u> &nbsp;&nbsp;&nbsp; <u>*\# Spring Data*</u> &nbsp;&nbsp;&nbsp; <u>*\# Spring Security*</u>
 ### <u>*\# MyBatis*</u> &nbsp;&nbsp;&nbsp; <u>*\# MySql*</u> &nbsp;&nbsp;&nbsp; <u>*\# AWS S3*</u> &nbsp;&nbsp;&nbsp; <u>*\# jwt*</u>
 
