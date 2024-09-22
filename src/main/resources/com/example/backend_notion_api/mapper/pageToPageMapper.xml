@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend_notion_api.mapper.PageToPageMapper">
+    <insert id="insertPageToPage" useGeneratedKeys="true" keyProperty="pageToPageId">
+        INSERT INTO PageToPage (path, title, content)
+        VALUES (#{path}, #{title}, #{content})
+    </insert>
+    <select id="getPageToPageCount">
+        SELECT COUNT(*)
+        FROM PageToPage
+        WHERE path LIKE CONCAT(#{parentPageId}, '%')
+    </select>
+
+    <update id="updatePageToPage" parameterType="map" >
+        UPDATE PageToPage
+        SET title = #{title}, content = #{content}
+        WHERE path = #{path}
+    </update>
+
+    <select id="getPageToPageByPath" resultType="com.example.backend_notion_api.domain.entity.PageToPageDTO">
+        SELECT page_to_page_id AS pageToPageId, path, title, content
+        FROM PageToPage
+        WHERE path = #{path}
+    </select>
+    <select id="getAllPageToPageByPageId" resultType="com.example.backend_notion_api.domain.entity.PageToPageDTO">
+        SELECT page_to_page_id AS pageToPageId, path, title, content
+        FROM PageToPage
+        WHERE path LIKE CONCAT(#{pageId}, '/%')
+    </select>
+
+    <delete id="deletePageToPageByPath">
+        DELETE FROM PageToPage
+        WHERE path LIKE CONCAT(#{path}, '/%')
+    </delete>
+
+    <delete id="deleteAllPageToPageByPageId">
+        DELETE FROM PageToPage
+        WHERE path LIKE CONCAT(#{pageId}, '/%')
+    </delete>
+</mapper>

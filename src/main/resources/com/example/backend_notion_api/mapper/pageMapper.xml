@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend_notion_api.mapper.PageMapper">
+
+    <!-- PageDTO 객체를 삽입하는 쿼리 -->
+    <insert id="insertPage" useGeneratedKeys="true" keyProperty="pageId">
+        INSERT INTO page (user_id, title, icon_url, background_url, updated_date, content, children_page_path_list)
+        VALUES (#{userId}, #{title}, #{iconUrl}, #{backgroundUrl}, #{updatedDate}, #{content},
+        CAST(#{childrenPagePathList} AS JSON))
+    </insert>
+
+    <update id="updatePage">
+        UPDATE page
+        SET title = #{title},
+            icon_url = #{iconUrl},
+            background_url = #{backgroundUrl},
+            updated_date = #{updatedDate},
+            content = #{content},
+            children_page_path_list = CAST(#{childrenPagePathList,jdbcType=VARCHAR} AS JSON)
+        WHERE page_id = #{pageId}
+        AND user_id = #{userId}
+    </update>
+
+    <select id="countPageByIdAndUserId" parameterType="map" resultType="int">
+        SELECT COUNT(1)
+        FROM page
+        WHERE page_id = #{pageId}
+        AND user_id = #{userId}
+    </select>
+
+    <select id="getPageListByUserId" resultType="map">
+        SELECT page_id, title
+        FROM page
+        WHERE user_id = #{userId}
+    </select>
+
+    <delete id="deletePageByIdAndUserId">
+        DELETE FROM page
+        WHERE page_id = #{pageId}
+        AND user_id = #{userId}
+    </delete>
+
+    <select id="compareUpdatedDateByPageIdAndUserId" parameterType="map" resultType="string">
+        SELECT
+            CASE
+                WHEN p.updated_date &lt; #{updatedDate} THEN 'client is later'
+                WHEN p.updated_date &gt; #{updatedDate} THEN 'client is earlier'
+               ELSE 'SAME'
+            END AS date_comparison
+        FROM page p
+        WHERE page_id = #{pageId}
+          AND user_id = #{userId}
+    </select>
+
+    <select id="getPage" resultType="com.example.backend_notion_api.domain.entity.PageDTO">
+        SELECT page_id AS pageId, user_id AS userId, title, icon_url AS iconUrl,
+               background_url AS backgroundUrl, updated_date AS updatedDate, content,
+               JSON_EXTRACT(children_page_path_list, '$') AS childrenPagePathList
+        FROM page
+        WHERE page_id = #{pageId}
+        AND user_id = #{userId}
+    </select>
+</mapper>
