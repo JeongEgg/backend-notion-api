@@ -10,25 +10,25 @@
 - API 기능은 큰 분류로 로그인 관련 기능, 페이지 작업 기능, 팀 워크 스페이스에 대한 기능들을 구현하였습니다.
 
 
-#
+
 ## 🚀&nbsp; ERD 설계
 
 ![erd 설계](https://github.com/user-attachments/assets/685c9d85-9d3b-4d1d-9676-a8d1372c32a7)
 
 
-#
+
 ## 🚀&nbsp;  아키텍처
 
 
 
-#
+
 
 ## 🚀&nbsp; 시퀀스 다이어그램 예시
 
 
 
 
-#
+
 ## 🚀&nbsp; 기술스택
 
 ### <u>*\# Spring Framework*</u> &nbsp;&nbsp;&nbsp; <u>*\# Spring Boot*</u> &nbsp;&nbsp;&nbsp; <u>*\# Spring Data*</u> &nbsp;&nbsp;&nbsp; <u>*\# Spring Security*</u>
