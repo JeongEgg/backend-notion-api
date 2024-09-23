@@ -6,6 +6,7 @@ import com.example.backend_notion_api.enums.IdType;
 import com.example.backend_notion_api.exception.customexception.InvalidPageTypeException;
 import com.example.backend_notion_api.exception.customexception.PageNotFoundException;
 import com.example.backend_notion_api.mapper.PageMapper;
+import com.example.backend_notion_api.s3.S3Service;
 import com.example.backend_notion_api.service.PageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ public class PageServiceImpl implements PageService {
 
     @Autowired
     private PageMapper pageMapper;
+
+    @Autowired
+    private S3Service s3Service;
 
     @Override
     public PageDTO createPage(String id, IdType idType, String pageType) {
@@ -94,6 +98,7 @@ public class PageServiceImpl implements PageService {
         int count = pageMapper.countPageByIdAndUserId(paramMap);
         if (count > 0) {
             pageMapper.deletePageByIdAndUserId(paramMap);
+            s3Service.deleteObjectsWithPrefix(pageId+"/");
         }else {
             throw new PageNotFoundException("해당 페이지를 찾을 수 없습니다.");
         }

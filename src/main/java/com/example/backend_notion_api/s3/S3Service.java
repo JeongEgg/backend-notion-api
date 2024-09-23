@@ -568,5 +568,32 @@ public class S3Service {
             continuationToken = listResponse.nextContinuationToken();
         } while (continuationToken != null);
     }
+
+    public void deleteObjectsWithPrefix(String prefix) {
+        String continuationToken = null;
+
+        do {
+            ListObjectsV2Request listRequest = ListObjectsV2Request.builder()
+                    .bucket(bucketName)
+                    .prefix(prefix)
+                    .continuationToken(continuationToken)
+                    .build();
+
+            ListObjectsV2Response listResponse = awsS3Config.s3Client().listObjectsV2(listRequest);
+
+            List<S3Object> objectsToDelete = listResponse.contents();
+
+            for (S3Object s3Object : objectsToDelete) {
+                DeleteObjectRequest deleteRequest = DeleteObjectRequest.builder()
+                        .bucket(bucketName)
+                        .key(s3Object.key())
+                        .build();
+
+                awsS3Config.s3Client().deleteObject(deleteRequest);
+            }
+
+            continuationToken = listResponse.nextContinuationToken();
+        } while (continuationToken != null);
+    }
 }
 
