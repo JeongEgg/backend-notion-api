@@ -1,4 +1,4 @@
-package com.example.backend_notion_api.domain.entity;
+package com.example.backend_notion_api.domain.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -7,16 +7,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeamWorkspaceDTO {
-
-    @JsonProperty("team_workspace_id")
-    private Long teamWorkspaceId;
+public class CreateTeamWorkspaceDTO {
 
     @JsonProperty("master_id")
     private String masterId;
@@ -30,5 +25,5 @@ public class TeamWorkspaceDTO {
 
     @JsonProperty("updated_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime updatedDate;
+    private String updated_date;
 }

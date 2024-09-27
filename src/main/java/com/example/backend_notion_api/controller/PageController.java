@@ -54,7 +54,7 @@ public class PageController {
                 .data(pageDTO)
                 .build();
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(201).body(response);
     }
 
     @PostMapping("/upload")

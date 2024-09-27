@@ -3,8 +3,6 @@ package com.example.backend_notion_api.domain.entity;
 import com.example.backend_notion_api.validator.LocalDateTimePattern;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,7 +16,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonNaming(value = PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PageDTO {
 
     @NotNull(message = "페이지 아이디가 null 입니다.")

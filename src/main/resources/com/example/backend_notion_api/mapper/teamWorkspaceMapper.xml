@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend_notion_api.mapper.TeamWorkspaceMapper">
+
+    <insert id="insertTeamWorkspace" parameterType="com.example.backend_notion_api.dto.TeamWorkspaceDTO">
+        INSERT INTO team_workspace (team_workspace_id, master_id, title, icon_url, comment, updated_date)
+        VALUES (#{teamWorkspaceId}, #{masterId}, #{title}, #{iconUrl}, #{comment}, #{updated_date})
+    </insert>
+
+    <delete id="deleteTeamWorkspace" parameterType="map">
+        DELETE FROM team_workspace
+        WHERE team_workspace_id = #{teamWorkspaceId}
+        AND master_id = #{masterId}
+    </delete>
+
+    <select id="checkMasterId" parameterType="map" resultType="int">
+        SELECT COUNT(*)
+        FROM team_workspace
+        WHERE team_workspace_id = #{teamWorkspaceId}
+        AND master_id = #{masterId}
+    </select>
+
+    <insert id="insertMembers" parameterType="map">
+        INSERT INTO team_workspace_members (team_workspace_id, user_id)
+        VALUES (#{teamWorkspaceId}, #{userId})
+    </insert>
+
+    <delete id="deleteMembers" parameterType="map">
+        DELETE FROM team_workspace_members
+        WHERE team_workspace_id = #{teamWorkspaceId}
+        AND user_id = #{userId}
+    </delete>
+
+    <select id="selectTeamWorkspaceById" parameterType="string" resultType="com.example.backend_notion_api.dto.TeamWorkspaceDTO">
+        SELECT team_workspace_id, master_id, title, icon_url, comment, updated_date
+        FROM team_workspace
+        WHERE team_workspace_id = #{teamWorkspaceId}
+    </select>
+
+    <update id="updateMasterId" parameterType="map">
+        UPDATE team_workspace
+        SET master_id = #{nextMasterId}
+        WHERE team_workspace_id = #{teamWorkspaceId}
+    </update>
+</mapper>

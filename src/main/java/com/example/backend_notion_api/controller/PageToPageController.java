@@ -33,12 +33,12 @@ public class PageToPageController {
 
         PageToPageDTO pageToPageDTO = pageToPageService.createPageToPage(parentPagePath);
         Api<PageToPageDTO> response = Api.<PageToPageDTO>builder()
-                .resultCode("200")
+                .resultCode("201")
                 .resultMessage("페이지가 생성되었습니다.")
                 .data(pageToPageDTO)
                 .build();
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.status(201).body(response);
     }
 
     @PostMapping("/upload")
