@@ -16,3 +16,4 @@ public interface TeamWorkspaceService {
 
     TeamWorkspaceDTO changeMaster(String teamWorkspaceId, String prevMasterId, String nextMasterId);
 }
+

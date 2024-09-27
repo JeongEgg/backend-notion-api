@@ -22,3 +22,4 @@ public class MembersDTO {
     @JsonProperty("user_id")
     private String userId;
 }
+

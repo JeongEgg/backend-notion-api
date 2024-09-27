@@ -15,6 +15,7 @@
         VALUES (#{username}, #{password}, #{nickname}, #{email}, #{role})
     </insert>
 
+
     <select id="findByUsername" resultType="com.example.backend_notion_api.domain.entity.UserDTO">
         SELECT id, username, password, nickname, email, role
         FROM user

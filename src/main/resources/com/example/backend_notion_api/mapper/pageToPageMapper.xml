@@ -19,6 +19,7 @@
         WHERE path = #{path}
     </update>
 
+
     <select id="getPageToPageByPath" resultType="com.example.backend_notion_api.domain.entity.PageToPageDTO">
         SELECT page_to_page_id AS pageToPageId, path, title, content
         FROM PageToPage

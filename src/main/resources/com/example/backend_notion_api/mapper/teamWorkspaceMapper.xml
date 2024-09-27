@@ -27,6 +27,7 @@
         VALUES (#{teamWorkspaceId}, #{userId})
     </insert>
 
+
     <delete id="deleteMembers" parameterType="map">
         DELETE FROM team_workspace_members
         WHERE team_workspace_id = #{teamWorkspaceId}
