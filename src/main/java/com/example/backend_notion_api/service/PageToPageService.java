@@ -20,3 +20,4 @@ public interface PageToPageService {
 
     void deleteAllPageToPageByPageId(String pageId);
 }
+

@@ -5,20 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 @Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PageToPageDTO {
+public class MembersDTO {
 
-    @JsonProperty("page_to_page_id")
-    private Long pageToPageId;
+    @Id
+    private Long id;
 
-    private String path;
+    @JsonProperty("team_workspace_id")
+    private Long teamWorkspaceId;
 
-    private String title;
-
-    private String content;
+    @JsonProperty("user_id")
+    private String userId;
 }
 

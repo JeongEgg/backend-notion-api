@@ -36,3 +36,4 @@ public class JoinServiceImpl implements JoinService {
         userMapper.register(userDTO);
     }
 }
+
