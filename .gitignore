@@ -72,3 +72,4 @@ Temporary Items
 
 
 /src/main/resources/application-aws.properties
+application.log

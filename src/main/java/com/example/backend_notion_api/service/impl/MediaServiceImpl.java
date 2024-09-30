@@ -6,6 +6,8 @@ import com.example.backend_notion_api.s3.ObjectKeyPathBuilder.*;
 import com.example.backend_notion_api.s3.S3Service;
 import com.example.backend_notion_api.service.MediaService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -18,6 +20,8 @@ import java.util.UUID;
 @Service
 public class MediaServiceImpl implements MediaService{
 
+    private static final Logger logger = LoggerFactory.getLogger(MediaServiceImpl.class);
+
     private final S3Service s3Service;
 
 
@@ -28,6 +32,7 @@ public class MediaServiceImpl implements MediaService{
     @Override
     public IdUrlDTO uploadFile(String pageId, MultipartFile mediaFile){
         // 업로드
+        logger.info("페이지 ID: {}에 파일 업로드 시작, 파일 이름: {}", pageId, mediaFile.getOriginalFilename());
         String fileId = UUID.randomUUID().toString();
 
         /** 경로 : userId/pageId/Icon/fileId
@@ -46,9 +51,11 @@ public class MediaServiceImpl implements MediaService{
          */
         String keyName = ObjectKeyPathBuilder.buildObjectKey(pageId,fileId);
         s3Service.uploadFileWithKeyname(mediaFile,keyName);
+        logger.info("파일 업로드 완료, 페이지 ID: {}, 파일 ID: {}", pageId, fileId);
 
         // 다운로드
         String url = s3Service.downloadFileAsURL(keyName);
+        logger.info("파일 다운로드 URL 생성 완료, 파일 ID: {}, URL: {}", fileId, url);
         IdUrlDTO idUrlDTO = IdUrlDTO.builder()
                 .fileId(fileId)
                 .fileUrl(url)
