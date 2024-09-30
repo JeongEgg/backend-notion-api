@@ -12,7 +12,7 @@ public interface TeamWorkspaceMapper {
 
     void insertMembers(String teamWorkspaceId, String userId);
 
-    void deleteMembers(String temaWorkspaceId, String userId);
+    void deleteMembers(String teamWorkspaceId, String userId);
 
     TeamWorkspaceDTO selectTeamWorkspaceById(String teamWorkspaceId);
 

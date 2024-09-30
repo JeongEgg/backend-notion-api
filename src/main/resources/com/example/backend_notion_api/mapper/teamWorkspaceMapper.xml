@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.backend_notion_api.mapper.TeamWorkspaceMapper">
 
-    <insert id="insertTeamWorkspace" parameterType="com.example.backend_notion_api.dto.TeamWorkspaceDTO">
+    <insert id="insertTeamWorkspace" parameterType="com.example.backend_notion_api.domain.entity.TeamWorkspaceDTO">
         INSERT INTO team_workspace (team_workspace_id, master_id, title, icon_url, comment, updated_date)
         VALUES (#{teamWorkspaceId}, #{masterId}, #{title}, #{iconUrl}, #{comment}, #{updated_date})
     </insert>
@@ -34,7 +34,7 @@
         AND user_id = #{userId}
     </delete>
 
-    <select id="selectTeamWorkspaceById" parameterType="string" resultType="com.example.backend_notion_api.dto.TeamWorkspaceDTO">
+    <select id="selectTeamWorkspaceById" parameterType="string" resultType="com.example.backend_notion_api.domain.entity.TeamWorkspaceDTO">
         SELECT team_workspace_id, master_id, title, icon_url, comment, updated_date
         FROM team_workspace
         WHERE team_workspace_id = #{teamWorkspaceId}

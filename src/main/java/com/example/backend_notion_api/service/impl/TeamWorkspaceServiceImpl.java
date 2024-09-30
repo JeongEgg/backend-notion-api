@@ -7,9 +7,11 @@ import com.example.backend_notion_api.exception.customexception.UserInformationT
 import com.example.backend_notion_api.mapper.TeamWorkspaceMapper;
 import com.example.backend_notion_api.service.TeamWorkspaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+@Service
 public class TeamWorkspaceServiceImpl implements TeamWorkspaceService {
 
     @Autowired
