@@ -1,4 +1,4 @@
-#  Notion 백엔드 토이 프로젝트
+#  Notion 백엔드 REST API 설계
 
 ## 🚀&nbsp;  프로젝트 소개
 
